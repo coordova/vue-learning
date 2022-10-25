@@ -1,21 +1,30 @@
+import Assignment from "./Assignment.js";
 
 export default {
+    components: {
+        Assignment
+    },
     template: `
-        <section v-show="inProgressAssignments.length">
-            <h2 class="font-bold mb-2">In Progress</h2>
+        <section v-show="assignments.length">
+            <h2 class="font-bold mb-2">{{ title }}</h2>
             
             <ul>
-                <li 
-                    v-for = "assignment in inProgressAssignments"
+                <assignment v-for = "assignment in assignments" :key="assignment.id" :assignment="assignment"></assignment>
+                <!-- <li 
+                    v-for = "assignment in assignments"
                     :key="assignment.id"
                 >
                     <label>
                         {{ assignment.name }}
                         <input type="checkbox" v-model="assignment.complete">
                     </label>
-                </li>
+                </li> -->
             </ul>
         </section>
     `,
 
+    props: {
+        assignments: Array,
+        title: String
+    }
 }

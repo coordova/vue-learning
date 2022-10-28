@@ -77,6 +77,7 @@ export default {
         } */
 
         /* Computer property 'filters' that returns an object */
+
         filters() {
             return {
                 inProgress: this.assignments.filter(assignment => ! assignment.complete ),
@@ -87,11 +88,19 @@ export default {
 
     methods: {
         add(name) {
+            // console.log(Math.floor(Math.random() * this.assignments.length));
+            const setTags = new Set(this.assignments.map(a => a.tag));
+            const arrayTags = [...setTags]; // from SET to ARRAY using SPREAD Operator (...)
+            // console.log([...setTags].length);
+            // console.log(arrayTags.length);
+            // console.log(Math.floor(Math.random() * (arrayTags.length)));
+
             this.assignments.push({
                 // name: this.newAssignment,
                 name: name,
                 completed: false,
-                id: this.assignments.length +1
+                id: this.assignments.length +1,
+                tag: arrayTags[Math.floor(Math.random() * (arrayTags.length))]
             });
             // this.newAssignment = '';
         }

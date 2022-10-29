@@ -10,10 +10,16 @@ export default {
         <section v-show="assignments.length">
             <h2 class="font-bold mb-2 uppercase font-medium">{{ title }} <span class="ml-3">({{assignments.length}})</span></h2>
             
-            <assignment-tags 
+            <!-- <assignment-tags 
+                v-model:currentTag="currentTag"     
                 :initial-tags="assignments.map(a => a.tag)" 
                 :current-tag="currentTag"
                 @change="currentTag = $event"
+            /> -->
+            <!-- Using v-model for track current track -->
+            <assignment-tags 
+                v-model:currentTag="currentTag"     
+                :initial-tags="assignments.map(a => a.tag)" 
             />
             <!-- <div class="flex gap-2">
                 <button 

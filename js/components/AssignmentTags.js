@@ -9,8 +9,17 @@ export default {
                     'border-lime-600 bg-lime-600 shadow-lime-2c00 shadow-sm': tag === currentTag
                 }"
             >{{ tag }}</button> -->
-            <button 
+            <!-- <button 
                 @click="$emit('change', tag)" 
+                v-for="tag in tags" 
+                class="px-1 pb-px text-xs border border-lime-400 rounded"
+                :class="{
+                    'border-lime-600 bg-lime-600 shadow-lime-2c00 shadow-sm': tag === currentTag
+                }"
+            >{{ tag }}</button> -->
+            
+            <button 
+                @click="$emit('update:currentTag', tag)" 
                 v-for="tag in tags" 
                 class="px-1 pb-px text-xs border border-lime-400 rounded"
                 :class="{

@@ -7,8 +7,11 @@ export default {
         AssignmentTags
     },
     template: `
-        <section v-show="assignments.length">
-            <h2 class="font-bold mb-2 uppercase font-medium">{{ title }} <span class="ml-3">({{assignments.length}})</span></h2>
+        <section v-show="assignments.length" class="w-72">
+            <div class="flex justify-between items-start">
+                <h2 class="font-bold mb-2 uppercase font-medium">{{ title }} <span class="ml-3">({{assignments.length}})</span></h2>
+                <button v-show="canToggle" @click="$emit('toggle')" class="px-2 font-normal text-lg text-white border border-red-500 bg-red-500 rounded-full hover:bg-red-600 hover:text-white scale-75">&times;</button>
+            </div>
             
             <!-- <assignment-tags 
                 v-model:currentTag="currentTag"     
@@ -48,17 +51,22 @@ export default {
                     </label>
                 </li> -->
             </ul>
+            <slot></slot>
         </section>
     `,
 
     props: {
         assignments: Array,
-        title: String
+        title: String,
+        canToggle: {
+            type: Boolean,
+            default: false
+        }
     },
 
     data() {
         return {
-            currentTag: 'all'
+            currentTag: 'all',
         }
     },
 

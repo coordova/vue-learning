@@ -10,16 +10,25 @@ export default {
 
     template: `
 
-        <section class="space-y-6">
-            <assignment-list :assignments="filters.inProgress" title="In Progress"></assignment-list>
-            <assignment-list :assignments="filters.completed" title="Completed"></assignment-list>
+        <section class="flex gap-20 ">
+            <assignment-list :assignments="filters.inProgress" title="In Progress">
+                <assignment-create @addEventFromChild="add"></assignment-create>
+            </assignment-list>
+            
+            <div v-show="showCompleted">
+                <assignment-list 
+                    :assignments="filters.completed" 
+                    title="Completed" 
+                    can-toggle
+                    @toggle="showCompleted = !showCompleted"
+                ></assignment-list>
+            </div>
             
             <!-- <form @submit.prevent="add">
                 <input v-model="newAssignment" type="text" placeholder="New Assignment..." class="bg-gray-600 placeholder:text-slate-400 border-gray-800 px-3 py-2 rounded-md">
                 <button type="submit" class="px-3 py-2 rounded-md bg-lime-600 text-white hover:bg-lime-500 ml-2">Add</button>
             </form> -->
             
-            <assignment-create @addEventFromChild="add"></assignment-create>
             
         </section>
 
@@ -59,7 +68,8 @@ export default {
     data() {
         return {
             assignments: [],
-            newAssignment: ''
+            // newAssignment: ''
+            showCompleted: true
         }
     },
 
@@ -89,7 +99,7 @@ export default {
 
     // Hook 'created'
     created() {
-        fetch('http://localhost:3000/assignments')
+        fetch('http://localhost:3001/assignments')
             .then(response => response.json())
             .then(assignments => {
                 this.assignments = assignments;

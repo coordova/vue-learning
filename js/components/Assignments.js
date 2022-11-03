@@ -1,5 +1,6 @@
 import AssignmentList from "./AssignmentList.js";
 import AssignmentCreate from "./AssignmentCreate.js";
+import assignment from "./Assignment.js";
 
 export default {
     components: {
@@ -57,12 +58,7 @@ export default {
 
     data() {
         return {
-            assignments: [
-                { name: 'Finish project', complete: false, id: 1, tag: 'math' },
-                { name: 'Read Chapter 4', complete: false, id: 2, tag: 'science' },
-                { name: 'Turn in Homework', complete: false, id: 3, tag: 'math' },
-                { name: 'Upload project to Github', complete: false, id: 4, tag: 'art' },
-            ],
+            assignments: [],
             newAssignment: ''
         }
     },
@@ -80,10 +76,24 @@ export default {
 
         filters() {
             return {
-                inProgress: this.assignments.filter(assignment => ! assignment.complete ),
-                completed: this.assignments.filter(assignment => assignment.complete )
+                inProgress: this.assignments.filter(assignment => ! assignment.completed ),
+                completed: this.assignments.filter(assignment => assignment.completed )
             }
         }
+    },
+
+    /* Hooks : Los mas importantes del ciclo [created(), mounted(), unmounted()] los restantes son [beforeCreate, beforeMount, beforeUnmount]  */
+    /* beforeCreate() {
+        alert('before create');
+    }, */
+
+    // Hook 'created'
+    created() {
+        fetch('http://localhost:3000/assignments')
+            .then(response => response.json())
+            .then(assignments => {
+                this.assignments = assignments;
+            });
     },
 
     methods: {

@@ -10,7 +10,7 @@ export default {
 
     template: `
 
-        <section class="flex gap-20 ">
+        <section class="flex gap-6 ">
             <assignment-list :assignments="filters.inProgress" title="In Progress">
                 <assignment-create @addEventFromChild="add"></assignment-create>
             </assignment-list>

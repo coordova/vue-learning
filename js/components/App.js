@@ -37,6 +37,36 @@ export default {
                     El pie de la tarjeta aqui
                 </template>
             </panel>
+            
+            <panel theme="blue">
+                <template v-slot:heading>
+                    Titulo
+                </template>
+                
+                <!-- <template v-slot:default> -->
+                   Contenido - el slot por defecto no necesita ser referenciado con template v-slot:default
+                <!-- </template> -->
+                
+                <template #footer>
+                <!-- <template v-slot:footer> -->
+                    El pie de la tarjeta aqui
+                </template>
+            </panel>
+            
+            <panel theme="lime">
+                <template v-slot:heading>
+                    Titulo
+                </template>
+                
+                <!-- <template v-slot:default> -->
+                   Contenido - el slot por defecto no necesita ser referenciado con template v-slot:default
+                <!-- </template> -->
+                
+                <template #footer>
+                <!-- <template v-slot:footer> -->
+                    El pie de la tarjeta aqui
+                </template>
+            </panel>
         </div>
     `,
 

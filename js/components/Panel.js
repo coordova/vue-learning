@@ -4,6 +4,8 @@ export default {
             'p-4 border rounded-lg': true,
             'bg-white border-gray-300 text-black' : theme == 'light',
             'bg-gray-700 border-gray-600 text-white' : theme == 'dark',
+            'bg-blue-700 border-blue-600 text-white' : theme == 'blue',
+            'bg-lime-700 border-lime-600 text-white' : theme == 'lime',
         }">
             <h2 v-if="$slots.heading" class="font-bold text-lg mb-2">
                 <slot name="heading" />
